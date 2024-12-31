@@ -1,0 +1,195 @@
+:root {
+  --metallic-gold: linear-gradient(145deg, #ffd700, #b8860b);
+  --metallic-silver: linear-gradient(145deg, #c0c0c0, #808080);
+  --card-base-size: min(500px, 50vw); /* Responsive base size */
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden; /* Prevent horizontal scroll */
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  perspective: 1200px;
+  position: relative;
+  height: calc(var(--card-base-size) + 100px);
+  width: 100%;
+  max-width: 90vw;
+}
+
+.carousel {
+  position: relative;
+  width: min(900px, 80vw);
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-card {
+  position: absolute;
+  transform-origin: center center;
+  transition: all 0.5s ease-out;
+  width: var(--card-base-size);
+  height: var(--card-base-size);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-card.active {
+  filter: drop-shadow(0px 0px 25px gold);
+  border: 2px solid #ffd700;
+}
+
+.carousel-button {
+  background: rgb(183,110,121);
+  border: none;
+  font-size: clamp(16px, 2vw, 48px);
+  cursor: pointer;
+  padding: clamp(5px, 0.8vw, 20px);
+  color: silver;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border-radius: 50%;
+  width: clamp(30px, 3.5vw, 60px);
+  height: clamp(30px, 3.5vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-button:hover {
+  opacity: 0.8;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button:active {
+  opacity: 0.6;
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-button.prev {
+  left: max(5px, 5vw);
+}
+
+.carousel-button.next {
+  right: max(5px, 5vw);
+}
+
+/* Media Queries */
+@media (max-width: 1400px) {
+  :root {
+    --card-base-size: min(250px, 25vw);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --card-base-size: min(200px, 30vw);
+  }
+  
+  .carousel {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --card-base-size: min(180px, 40vw);
+  }
+
+  .carousel-button {
+    font-size: clamp(14px, 1.8vw, 24px);
+    width: clamp(25px, 3vw, 40px);
+    height: clamp(25px, 3vw, 40px);
+    padding: clamp(4px, 0.6vw, 12px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-base-size: min(150px, 50vw);
+  }
+  
+  .carousel-container {
+    padding: 10px;
+    margin-bottom: 40px;
+  }
+
+  .carousel-button {
+    font-size: clamp(12px, 1.5vw, 20px);
+    width: clamp(20px, 2.5vw, 35px);
+    height: clamp(20px, 2.5vw, 35px);
+    padding: clamp(3px, 0.5vw, 10px);
+    /* Position buttons below the carousel */
+    position: absolute;
+    top: auto;
+    bottom: max(10vh, 50px);
+    transform: none;
+  }
+
+  .carousel-button:hover {
+    transform: scale(1.1);
+  }
+
+  .carousel-button:active {
+    transform: scale(0.95);
+  }
+
+  .carousel-button.prev {
+    left: 40vw;
+  }
+  
+  .carousel-button.next {
+    right: 40vw;
+  }
+  
+}
+
+/* Additional media query for extremely narrow screens */
+@media (max-width: 380px) {
+  .carousel-container {
+    margin-bottom: 35px;
+  }
+
+  .carousel-button {
+    width: 25px;
+    height: 25px;
+    bottom: max(12vh, 90px);
+  }
+
+  .carousel-button.prev {
+    left: 40vw;
+  }
+  
+  .carousel-button.next {
+    right: 40vw;
+  }
+  
+}
+
+/* Update App background */
+.App {
+  background: var(--metallic-silver);
+} 
